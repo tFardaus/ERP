@@ -71,6 +71,7 @@
 					<td class="auto-style1">&nbsp;</td>
 					<td   class="auto-style5">
 						<asp:Button ID="btnShowEmployeeData"  runat="server" OnClick="btnShowEmployeeData_Click" Text="Submit" />
+                         <asp:Button ID="btnShowEmployee" runat="server" OnClick="btnShowEmployee_Click" Text="Show" />
 					</td>
 					<td>&nbsp;</td>
 				</tr>
@@ -101,10 +102,39 @@
 					<td class="auto-style8" style="width: 241px">&nbsp;</td>
 					<td>
 						<asp:Label ID="lblShowEmployeeCity" runat="server"></asp:Label>
+
 					</td>
 					<td>&nbsp;</td>
 				</tr>
-			</table>
+
+                 <tr>
+                    <td colspan="3">
+                        <asp:GridView ID="grdEmployeeRecords" runat="server" Width="100%" AutoGenerateColumns="False" OnRowCommand="grdEmployeeRecords_RowCommand" OnRowDeleting="grdEmployeeRecords_RowDeleting">
+                            <Columns>
+                                <asp:TemplateField HeaderText="Name">
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label3" runat="server" Text='<%# Bind("Name") %>' ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Email">
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Age">
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label5" runat="server" Text='<%# Bind("Age") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                               
+                                <asp:CommandField ShowSelectButton="True" />
+                                <asp:CommandField ShowDeleteButton="True" />
+                            </Columns>
+                        </asp:GridView>
+                    </td>
+                </tr>
+                </table>
         </div>
   
 </asp:Content>
