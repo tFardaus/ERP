@@ -19,22 +19,17 @@ namespace HR.UI
 
         protected void btnShowEmployeeData_Click(object sender, EventArgs e)
         {
-
-
-
-
             try
-            {
-                
-
+            {             
                 String Name = txtEmployeeName.Text;
                 String Email = txtEmployeeEmail.Text;
                 string Age = txtEmployeeAge.Text;
                 string City = dropdownListEmployeeCity.Text;
+                int EmployeeID = Convert.ToInt32(txtEmployeeID.Text);
 
                 string connectionString = ConfigurationManager.ConnectionStrings["dbERPConnection"].ToString();
-                var sql = "INSERT INTO [Employee] ([Name], [Email], [Age], [City]) " +
-                          "VALUES ('" + Name + "', '" + Email + "', '" + Age + "', '" + City + "');";
+                var sql = "INSERT INTO [Employee] ([Name], [Email], [Age], [City],[EmployeeID]) " +
+                          "VALUES ('" + Name + "', '" + Email + "', '" + Age + "', '" + City + "', " + EmployeeID + ");";
                 SaveEmployee(connectionString, sql);
                 lblShowEmployeeName.Text = "Data save successfully";
                
@@ -66,6 +61,7 @@ namespace HR.UI
                 throw msgError;
             }
         }
+
         protected void btnShowEmployee_Click(object sender, EventArgs e)
         {
             ShowEmployees();
@@ -86,7 +82,6 @@ namespace HR.UI
                 myCommand.CommandText = sql;
                 myCommand.ExecuteNonQuery();
 
-
                 var resultantDataAdapter = new SqlDataAdapter(myCommand);
 
                 DataTable dtEmployee = new DataTable();
@@ -99,7 +94,6 @@ namespace HR.UI
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -109,7 +103,7 @@ namespace HR.UI
             try
             {
                 int selectedIndex = Convert.ToInt32(e.CommandArgument.ToString());
-                string employeeID = ((Label)grdEmployeeRecords.Rows[selectedIndex].FindControl("lblEmployeeID")).Text;
+                string EmployeeID = ((Label)grdEmployeeRecords.Rows[selectedIndex].FindControl("lblEmployeeID")).Text;
 
                 if (e.CommandName.Equals("Select"))
                 {
@@ -122,9 +116,9 @@ namespace HR.UI
                 {
                     try
                     {
-                        lblShowEmployeeName.Text = string.Empty;
+                       
                         string connectionString = ConfigurationManager.ConnectionStrings["dbERPConnection"].ToString();
-                        var sql = @"DELETE FROM Employee WHERE EmployeeID=" + employeeID + "";
+                        var sql = @"DELETE FROM Employee WHERE EmployeeID=" + EmployeeID + "";
                         SaveEmployee(connectionString, sql);
                         lblShowEmployeeName.Text = "Data save successfully";
                         ShowEmployees();
@@ -149,20 +143,60 @@ namespace HR.UI
 
         }
 
-
-
-
-       
-        
-
-
-
+                       
         protected void grdEmployeeRecords_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
         }
 
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int EmployeeID = Convert.ToInt32(txtEmployeeID.Text);
+                string connectionString = ConfigurationManager.ConnectionStrings["dbERPConnection"].ToString();
+                var sql = @"DELETE FROM Employee WHERE EmployeeID="+EmployeeID+"";
+                SaveEmployee(connectionString, sql);
+                lblShowEmployeeName.Text = "Data save successfully";
 
+                ShowEmployees();
+
+            }
+            catch (Exception msgError)
+            {
+                lblShowEmployeeName.Text = msgError.ToString();
+            }
+
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String Name = txtEmployeeName.Text;
+                String Email = txtEmployeeEmail.Text;
+                string Age = txtEmployeeAge.Text;
+                string City = dropdownListEmployeeCity.Text;
+                int EmployeeID = Convert.ToInt32(txtEmployeeID.Text);
+
+                string connectionString = ConfigurationManager.ConnectionStrings["dbERPConnection"].ToString();
+                var sql = @"UPDATE [Employee]
+                    SET          [Name] = '" + Name + "'" +
+                              " ,[Email] = '" + Email + "'" +
+                              " ,[Age] = '" + Age + "'" +
+                              " ,[City] = '" + City + "'" +
+                   " WHERE       [EmployeeID] =" + EmployeeID + ";";
+                SaveEmployee(connectionString, sql);
+                lblShowEmployeeName.Text = "Data save successfully";
+               
+                ShowEmployees();
+
+            }
+            catch (Exception msgError)
+            {
+                lblShowEmployeeName.Text = msgError.ToString();
+            }
+        }
 
     }
 

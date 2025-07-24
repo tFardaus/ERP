@@ -56,7 +56,7 @@
 			</table>
 			<table  style="width:100%;">
 				<tr>
-					<td   class="auto-style1">City</td>
+					<td   class="auto-style1" style="width: 235px">City</td>
 					<td   class="auto-style5">
 						<asp:DropDownList ID="dropdownListEmployeeCity" runat="server" CssClass="col-xs-offset-0">
 							<asp:ListItem>Dhaka</asp:ListItem>
@@ -68,15 +68,24 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td class="auto-style1">&nbsp;</td>
+					<td   class="auto-style1" style="width: 235px">EmployeeID</td>
 					<td   class="auto-style5">
-						<asp:Button ID="btnShowEmployeeData"  runat="server" OnClick="btnShowEmployeeData_Click" Text="Submit" />
-                         <asp:Button ID="btnShowEmployee" runat="server" OnClick="btnShowEmployee_Click" Text="Show" />
+						<asp:TextBox ID="txtEmployeeID" runat="server"></asp:TextBox>
 					</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td class="auto-style1">&nbsp;</td>
+					<td class="auto-style1" style="width: 235px">&nbsp;</td>
+					<td   class="auto-style5">
+						<asp:Button ID="btnShowEmployeeData"  runat="server" OnClick="btnShowEmployeeData_Click" Text="Submit" />
+                         <asp:Button ID="btnShowEmployee" runat="server" OnClick="btnShowEmployee_Click" Text="Show" />
+					    <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
+                        <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="Update" />
+					</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="auto-style1" style="width: 235px">&nbsp;</td>
 					<td class="auto-style5">
 						<asp:Label ID="lblShowEmployeeName" runat="server"></asp:Label>
 					</td>
@@ -122,9 +131,9 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Age">
+                                <asp:TemplateField HeaderText="Employee ID">
                                     <ItemTemplate>
-                                        <asp:Label ID="Label5" runat="server" Text='<%# Bind("Age") %>'></asp:Label>
+                                        <asp:Label ID="lblEmployeeID" runat="server" Text='<%# Bind("EmployeeID") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                
