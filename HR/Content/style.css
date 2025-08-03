@@ -1,1 +1,177 @@
-﻿
+﻿/* ───────────────────────────────────────────────
+   Base / page wide
+   ───────────────────────────────────────────────*/
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI",Tahoma,Arial,sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    font-size: 16px;
+}
+
+/* Keep every table nicely spaced from the next one */
+table {
+    width: 100%;
+    border-collapse: collapse
+}
+
+    table + table {
+        margin-top: 12px
+    }
+
+/* ───────────────────────────────────────────────
+   FORM AREA (the two data-entry tables)
+   Visual Studio created a lot of auto-styleX classes;
+   we wrap them all in one “card”.
+   ───────────────────────────────────────────────*/
+.auto-style4 { /* first big table */
+    background: #fff;
+    padding: 24px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.08);
+}
+
+    /* Everything else inside inherits the same look */
+    .auto-style4 td,
+    .auto-style1,
+    .auto-style2,
+    .auto-style3,
+    .auto-style5,
+    .auto-style6,
+    .auto-style7,
+    .auto-style8 {
+        vertical-align: top;
+        padding: 8px 12px;
+    }
+
+        /* Label cells (first <td> in each row) */
+        .auto-style1,
+        .auto-style2,
+        .auto-style3,
+        .auto-style4 td:first-child {
+            text-align: right;
+            font-weight: 600;
+            color: #444;
+            width: 180px; /* fixed label width on desktop */
+        }
+
+/* TextBoxes & DropDownList */
+input[type="text"],
+select {
+    width: 240px;
+    max-width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color .2s ease;
+}
+
+    input[type="text"]:focus,
+    select:focus {
+        border-color: #0078d7;
+        outline: none;
+    }
+
+/* Action buttons (Submit / Show / Delete / Update) */
+input[type="submit"],
+input[type="button"] {
+    background: #0078d7;
+    border: 1px solid #0078d7;
+    color: #fff;
+    padding: 8px 18px;
+    margin: 0 6px 6px 0;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background .18s ease;
+}
+
+    input[type="submit"]:hover,
+    input[type="button"]:hover {
+        background: #005fa3;
+    }
+
+/* Labels that show the employee you just retrieved */
+[id$="lblShowEmployeeName"],
+[id$="lblShowEmployeeEmail"],
+[id$="lblShowEmployeeAge"],
+[id$="lblShowEmployeeCity"] {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 2px 0;
+}
+
+/* ───────────────────────────────────────────────
+   GRIDVIEW
+   “asp:GridView” renders a table; the generated id is
+   MainContent_grdEmployeeRecords by default.
+   ───────────────────────────────────────────────*/
+#MainContent_grdEmployeeRecords {
+    margin-top: 24px;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden; /* round top corners on header */
+    box-shadow: 0 2px 6px rgba(0,0,0,.08);
+}
+
+    #MainContent_grdEmployeeRecords th {
+        background: #0078d7;
+        color: #fff;
+        padding: 10px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    #MainContent_grdEmployeeRecords td {
+        padding: 10px;
+        border-bottom: 1px solid #e1e1e1;
+        font-size: 14px;
+    }
+
+    #MainContent_grdEmployeeRecords tr:nth-child(even) td {
+        background: #f8f8f8;
+    }
+
+    /* Tiny buttons that GridView renders in Select/Delete columns */
+    #MainContent_grdEmployeeRecords input[type="button"],
+    #MainContent_grdEmployeeRecords input[type="submit"] {
+        padding: 4px 10px;
+        font-size: 13px;
+        margin: 0 2px;
+        border-radius: 4px;
+    }
+
+/* ───────────────────────────────────────────────
+   RESPONSIVE TWEAKS
+   ───────────────────────────────────────────────*/
+@media(max-width:640px) {
+    body {
+        padding: 10px;
+        font-size: 15px
+    }
+    /* Make label / input stack vertically */
+    .auto-style1,
+    .auto-style2,
+    .auto-style3,
+    .auto-style4 td:first-child {
+        text-align: left;
+        width: auto;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    input[type="text"],
+    select {
+        width: 100%;
+    }
+    /* Stack buttons full-width on phones */
+    input[type="submit"],
+    input[type="button"] {
+        width: 100%;
+        margin: 4px 0;
+    }
+}

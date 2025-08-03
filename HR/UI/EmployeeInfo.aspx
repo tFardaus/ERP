@@ -118,7 +118,7 @@
 
                  <tr>
                     <td colspan="3">
-                        <asp:GridView ID="grdEmployeeRecords" runat="server" Width="100%" AutoGenerateColumns="False" OnRowCommand="grdEmployeeRecords_RowCommand" OnRowDeleting="grdEmployeeRecords_RowDeleting">
+                        <asp:GridView ID="grdEmployeeRecords" runat="server" Width="100%" AutoGenerateColumns="False" OnRowCommand="grdEmployeeRecords_RowCommand" OnRowDeleting="grdEmployeeRecords_RowDeleting" OnSelectedIndexChanged="grdEmployeeRecords_SelectedIndexChanged">
                             <Columns>
                                 <asp:TemplateField HeaderText="Name">
                                     <ItemTemplate>

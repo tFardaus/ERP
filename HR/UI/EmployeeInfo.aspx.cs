@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HR.BLL;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -25,12 +26,17 @@ namespace HR.UI
                 String Email = txtEmployeeEmail.Text;
                 string Age = txtEmployeeAge.Text;
                 string City = dropdownListEmployeeCity.Text;
-                int EmployeeID = Convert.ToInt32(txtEmployeeID.Text);
+                
 
                 string connectionString = ConfigurationManager.ConnectionStrings["dbERPConnection"].ToString();
-                var sql = "INSERT INTO [Employee] ([Name], [Email], [Age], [City],[EmployeeID]) " +
-                          "VALUES ('" + Name + "', '" + Email + "', '" + Age + "', '" + City + "', " + EmployeeID + ");";
-                SaveEmployee(connectionString, sql);
+                var sql = "INSERT INTO [Employee] ([Name], [Email], [Age], [City]) " +
+                     "VALUES ('" + Name + "', '" + Email + "', '" + Age + "', '" + City + "')";
+
+
+                EmployeeInfoController employeeInfoController=new EmployeeInfoController();
+                employeeInfoController.SaveEmployee(connectionString, sql);
+
+               // SaveEmployee(connectionString, sql);
                 lblShowEmployeeName.Text = "Data save successfully";
                
 
@@ -198,6 +204,10 @@ namespace HR.UI
             }
         }
 
+        protected void grdEmployeeRecords_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
